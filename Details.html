@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Portfolio Details - G.phanindra</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+    />
+    <style>
+      /* Consistent transition variables */
+      :root {
+        --transition-duration: 1200ms;
+        --neon-green: #00ff00;
+        --dark-green: #009300;
+        --bright-green: #4dff4d;
+        --black: #000000;
+        --white: #ffffff;
+        --gray: #333333;
+      }
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      html,
+      body {
+        height: 100%;
+        background-color: var(--black);
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        color: var(--white);
+        overflow-x: hidden;
+        /* Initial state for page load animation */
+        opacity: 1; /* Changed from 0 to 1 as fallback */
+        transform: translateY(0); /* Changed from 20px to 0 as fallback */
+        transition: opacity var(--transition-duration) ease,
+          transform var(--transition-duration) ease;
+      }
+
+      /* Class applied after DOM load to trigger animation */
+      body.loaded {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      /* Class applied before navigation to trigger fade-out */
+      body.fade-out {
+        opacity: 0 !important;
+        transform: translateY(-30px) !important;
+      }
+
+      header {
+        padding: 20px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        background-color: rgba(0, 0, 0, 0.8);
+        position: relative;
+        z-index: 10;
+        box-shadow: 0 2px 15px rgba(0, 255, 0, 0.3);
+      }
+
+      .logo {
+        font-size: 28px;
+        font-weight: bold;
+        color: var(--neon-green);
+        text-shadow: 0 0 10px rgba(0, 255, 0, 0.7);
+        letter-spacing: 2px;
+      }
+
+      .home-button {
+        background-color: var(--neon-green);
+        color: var(--black);
+        font-size: 16px;
+        font-weight: bold;
+        text-decoration: none;
+        display: inline-block;
+        padding: 12px 24px;
+        border-radius: 30px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        box-shadow: 0 4px 15px rgba(0, 255, 0, 0.4);
+        border: 2px solid transparent;
+      }
+
+      .home-button:hover {
+        background-color: var(--black);
+        color: var(--neon-green);
+        transform: scale(1.05);
+        border: 2px solid var(--neon-green);
+        box-shadow: 0 0 20px rgba(0, 255, 0, 0.6);
+      }
+
+      .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 40px 20px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        min-height: calc(100vh - 100px);
+      }
+
+      .section-title {
+        font-size: 36px;
+        margin-bottom: 40px;
+        color: var(--neon-green);
+        text-align: center;
+        text-transform: uppercase;
+        letter-spacing: 3px;
+        position: relative;
+        padding-bottom: 15px;
+      }
+
+      .section-title::after {
+        content: "";
+        position: absolute;
+        bottom: 0;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 100px;
+        height: 4px;
+        background: linear-gradient(
+          90deg,
+          transparent,
+          var(--neon-green),
+          transparent
+        );
+      }
+
+      .menu-grid {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 25px;
+        width: 100%;
+        max-width: 800px;
+      }
+
+      .menu-button {
+        background-color: rgba(0, 0, 0, 0.7);
+        border: 2px solid var(--neon-green);
+        color: var(--neon-green);
+        font-size: 22px;
+        font-weight: bold;
+        text-align: center;
+        padding: 25px 20px;
+        border-radius: 12px;
+        cursor: pointer;
+        transition: all 0.4s ease;
+        position: relative;
+        overflow: hidden;
+        z-index: 1;
+        box-shadow: 0 6px 20px rgba(0, 255, 0, 0.2);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .menu-button::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 0%;
+        height: 100%;
+        background-color: var(--neon-green);
+        transition: all 0.4s ease;
+        z-index: -1;
+      }
+
+      .menu-button:hover {
+        color: var(--black);
+        transform: translateY(-5px);
+        box-shadow: 0 10px 25px rgba(0, 255, 0, 0.4);
+      }
+
+      .menu-button:hover::before {
+        width: 100%;
+      }
+
+      .menu-button i {
+        margin-right: 15px;
+        font-size: 24px;
+      }
+
+      .menu-button:active {
+        transform: scale(0.98) translateY(-2px);
+      }
+
+      /* For CV download button - keep the same styling as menu-button */
+      .cv-button {
+        background-color: rgba(0, 0, 0, 0.7);
+        border: 2px solid var(--neon-green);
+        color: var(--neon-green);
+        font-size: 22px;
+        font-weight: bold;
+        text-align: center;
+        padding: 25px 20px;
+        border-radius: 12px;
+        cursor: pointer;
+        transition: all 0.4s ease;
+        position: relative;
+        overflow: hidden;
+        z-index: 1;
+        box-shadow: 0 6px 20px rgba(0, 255, 0, 0.2);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+        text-decoration: none; /* Remove underline from the link */
+      }
+
+      .cv-button::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 0%;
+        height: 100%;
+        background-color: var(--neon-green);
+        transition: all 0.4s ease;
+        z-index: -1;
+      }
+
+      .cv-button:hover {
+        color: var(--black);
+        transform: translateY(-5px);
+        box-shadow: 0 10px 25px rgba(0, 255, 0, 0.4);
+      }
+
+      .cv-button:hover::before {
+        width: 100%;
+      }
+
+      .cv-button i {
+        margin-right: 15px;
+        font-size: 24px;
+      }
+
+      .cv-button:active {
+        transform: scale(0.98) translateY(-2px);
+      }
+
+      .background-effect {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        pointer-events: none;
+        z-index: 0;
+        opacity: 0.05;
+        background-image: radial-gradient(
+          circle,
+          var(--neon-green) 1px,
+          transparent 1px
+        );
+        background-size: 50px 50px;
+      }
+
+      footer {
+        text-align: center;
+        padding: 20px;
+        background-color: rgba(0, 0, 0, 0.8);
+        color: rgb(81, 255, 0);
+        font-size: 14px;
+        box-shadow: 0 -2px 15px rgb(9, 255, 0);
+      }
+
+      @media (max-width: 768px) {
+        .menu-button, .cv-button {
+          font-size: 18px;
+          padding: 20px 15px;
+        }
+
+        .section-title {
+          font-size: 28px;
+        }
+
+        .container {
+          padding: 20px 15px;
+        }
+      }
+
+      @keyframes pulse {
+        0% {
+          box-shadow: 0 0 0 0 rgba(0, 255, 0, 0.7);
+        }
+        70% {
+          box-shadow: 0 0 0 10px rgba(0, 255, 0, 0);
+        }
+        100% {
+          box-shadow: 0 0 0 0 rgba(0, 255, 0, 0);
+        }
+      }
+
+      .pulse-effect {
+        animation: pulse 2s infinite;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="background-effect"></div>
+
+    <header>
+      <div class="logo">G.PHANINDRA</div>
+      <a
+        href="#"
+        class="home-button"
+        onclick="navigateSmoothly('index.html'); return false;"
+      >
+        <i class="fas fa-home"></i> Home
+      </a>
+    </header>
+
+    <div class="container">
+      <h1 class="section-title">Portfolio Details</h1>
+
+      <div class="menu-grid">
+        <button
+          class="menu-button pulse-effect"
+          onclick="navigateSmoothly('About_Me.html')"
+        >
+          <i class="fas fa-user"></i> About Me
+        </button>
+
+        <button
+          class="menu-button"
+          onclick="navigateSmoothly('Education.html')"
+        >
+          <i class="fas fa-graduation-cap"></i> Education
+        </button>
+
+        <button
+          class="menu-button"
+          onclick="navigateSmoothly('Achievements.html')"
+        >
+          <i class="fas fa-trophy"></i> Achievements
+        </button>
+
+        <button
+          class="menu-button"
+          onclick="navigateSmoothly('Technical_skills.html')"
+        >
+          <i class="fas fa-laptop-code"></i> Technical Skills
+        </button>
+
+        <!-- Updated CV download button to match other buttons -->
+        <a href="My_CV.pdf" download class="cv-button">
+          <i class="fas fa-file-download"></i> Download My CV
+        </a>
+      </div>
+    </div>
+
+    <footer class="footer">&copy; 2025 G.phanindra | All Rights Reserved</footer>
+
+    <script>
+      // Function to handle smooth page transitions
+      function navigateSmoothly(url) {
+        // Store that we're transitioning in sessionStorage
+        sessionStorage.setItem("isPageTransitioning", "true");
+
+        // Apply fade-out class
+        document.body.classList.add("fade-out");
+
+        // Wait for animation to complete before navigating
+        setTimeout(function () {
+          window.location.href = url;
+        }, 1000); // Match your transition duration
+      }
+
+      // Wait for DOM content to load before starting animations
+      document.addEventListener("DOMContentLoaded", function () {
+        try {
+          // Check if we're coming from another page
+          const isTransitioning =
+            sessionStorage.getItem("isPageTransitioning") === "true";
+
+          if (isTransitioning) {
+            // Clear the transitioning flag
+            sessionStorage.removeItem("isPageTransitioning");
+          }
+
+          // Small delay to ensure animations trigger properly
+          setTimeout(function () {
+            document.body.classList.add("loaded");
+          }, 100);
+        } catch (e) {
+          console.error("Error in page transition:", e);
+          // Fallback - make sure page is visible
+          document.body.style.opacity = 1;
+          document.body.style.transform = "translateY(0)";
+        }
+      });
+
+      // Fallback in case DOMContentLoaded never fires
+      setTimeout(function () {
+        if (!document.body.classList.contains("loaded")) {
+          document.body.style.opacity = 1;
+          document.body.style.transform = "translateY(0)";
+          console.warn("Fallback page visibility activated");
+        }
+      }, 2000);
+    </script>
+  </body>
+</html>

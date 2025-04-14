@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Achievements</title>
+    <link rel="stylesheet" href="styles.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+    />
+    <style>
+      body {
+        background-color: #000000;
+        font-family: Arial, sans-serif;
+        color: #0dff00;
+        margin: 0;
+        padding: 0;
+        opacity: 0;
+        transform: translateY(20px);
+        transition: opacity 0.8s ease, transform 0.8s ease;
+        text-align: center;
+      }
+
+      body.loaded {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      header {
+        text-align: center;
+        margin-top: 20px;
+        color: #0dff00;
+        font-size: 2em;
+      }
+
+      .container {
+        max-width: 800px;
+        margin: 0 auto;
+        padding: 20px;
+        background-color: #000000;
+        border-radius: 8px;
+        box-shadow: 0 0 10px rgb(0, 255, 0);
+      }
+
+      .home-button {
+        background-color: rgb(0, 255, 0);
+        color: rgb(0, 0, 0);
+        font-size: 16px;
+        font-weight: bold;
+        text-decoration: none;
+        display: inline-block;
+        padding: 12px 24px;
+        border-radius: 30px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        box-shadow: 0 4px 15px rgba(0, 255, 0, 0.4);
+        border: 2px solid transparent;
+        margin-right: 10px;
+      }
+
+      .navigation {
+        text-align: center;
+        padding: 15px 0;
+        background-color: rgba(0, 0, 0, 0.9);
+        position: sticky;
+        top: 0;
+        z-index: 100;
+        border-bottom: 1px solid #04ff00;
+        margin-bottom: 20px;
+        width: 100%;
+      }
+
+      .home-button:hover {
+        background-color: #000000;
+        color: #00ff00;
+        transform: scale(1.05);
+        border: 2px solid #00ff00;
+        box-shadow: 0 0 20px rgba(0, 255, 0, 0.6);
+      }
+
+      .back-button {
+        background-color: rgb(0, 255, 0);
+        color: rgb(0, 0, 0);
+        font-size: 16px;
+        font-weight: bold;
+        text-decoration: none;
+        display: inline-block;
+        padding: 12px 24px;
+        border-radius: 30px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        box-shadow: 0 4px 15px rgba(0, 255, 0, 0.4);
+        border: 2px solid transparent;
+      }
+
+      .back-button:hover {
+        background-color: #000000;
+        color: #00ff00;
+        transform: scale(1.05);
+        border: 2px solid #00ff00;
+        box-shadow: 0 0 20px rgba(0, 255, 0, 0.6);
+      }
+
+      .logo {
+        font-size: 28px;
+        font-weight: bold;
+        color: #00ff00;
+        text-shadow: 0 0 10px rgba(0, 255, 0, 0.7);
+        letter-spacing: 2px;
+      }
+
+      .fade-out {
+        opacity: 0 !important;
+        transform: translateY(-20px) !important;
+      }
+
+      .container-header {
+        font-size: 2em;
+        text-align: center;
+        margin-top: 10px;
+        color: #0dff00;
+        font-weight: bold;
+        letter-spacing: 2px;
+        margin-bottom: 20px;
+        padding-top: 10px;
+        padding-bottom: 1px;
+        border-radius: 20px;
+        border-top: #00ff00 2px solid;
+        border-bottom: #00ff00 2px solid;
+        background-color: rgba(0, 0, 0, 0.8);
+        transition: all 0.3s ease;
+        width: 500px;
+        height: 50px;
+        box-shadow: 0 0 20px rgba(0, 255, 0, 0.6);
+        margin-left: auto;
+        margin-right: auto;
+      }
+
+      .container-header i {
+        margin-right: 10px;
+        color: #0dff00;
+        text-shadow: 0 0 10px rgba(0, 255, 0, 0.7);
+      }
+
+      h1,
+      ul {
+        transition: opacity 0.8s ease, transform 0.8s ease;
+      }
+      achievements-list {
+        list-style-type: none;
+        padding: 0;
+        margin: 0;
+        font-size: 1.2em;
+        color: #0dff00;
+        text-align: center;
+        vertical-align: middle;
+      }
+      .achievements-list li {
+        margin: 10px 0;
+        padding: 10px;
+        background-color: rgba(0, 0, 0, 0.8);
+        border-radius: 5px;
+        box-shadow: 0 0 10px rgb(0, 255, 0);
+        transition: all 0.3s ease;
+        text-align: center;
+        width: 500px;
+        vertical-align: middle;
+      }
+      .achievements-wrapper {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+      }
+
+      .achievements-list {
+        list-style-type: none;
+        padding: 0;
+        margin: 0;
+      }
+
+      .achievements-list li {
+        margin: 10px 0;
+        padding: 10px;
+        background-color: rgba(0, 0, 0, 0.8);
+        border-radius: 5px;
+        box-shadow: 0 0 10px rgb(0, 255, 0);
+        transition: all 0.3s ease;
+        text-align: center;
+        width: 500px;
+      }
+
+      .achievements-list li:hover {
+        background-color: #000000;
+        color: #00ff00;
+        transform: scale(1.05);
+        box-shadow: 0 0 20px rgba(0, 255, 0, 0.6);
+      }
+    </style>
+  </head>
+  <body>
+    <div class="navigation">
+      <a
+        href="index.html"
+        class="home-button"
+        onclick="navigateSmoothly('index.html'); return false;"
+      >
+        <i class="fas fa-home"></i> Home
+      </a>
+      <a
+        href="Details.html"
+        class="back-button"
+        onclick="navigateSmoothly('Details.html'); return false;"
+      >
+        <i class="fas fa-arrow-left"></i> Go Back
+      </a>
+    </div>
+    <header class="container-header">
+      <i class="fas fa-trophy"></i>
+      Achievements
+    </header>
+    <div class="achievements-wrapper">
+      <ul class="achievements-list">
+        <li>
+          <i class="fas fa-medal"></i> Engineer's syndicate National General
+          Knowledge Olympiad: State-5th rank
+        </li>
+        <br />
+        <li>
+          <i class="fas fa-certificate"></i> 10 th Board Examination: 584/600
+        </li>
+        <br />
+        <li>
+          <i class="fas fa-certificate"></i> A.P Polycet (2022): state-7th rank
+        </li>
+        <br />
+        <li>
+          <i class="fas fa-certificate"></i> 12 th Board Examination(CBSE):
+          94.6%
+        </li>
+        <br />
+        <li>
+          <i class="fas fa-certificate"></i> A.P EAMCET (2024): state-47th rank
+        </li>
+        <br />
+        <li>
+          <i class="fas fa-certificate"></i> JEE Mains (2024): 99.95 percentile
+          and AIR 941
+        </li>
+        <br />
+        <li>
+          <i class="fas fa-certificate"></i> JEE Advanced (2024): AIR 1795
+        </li>
+        <br>
+        <li>
+          <i class="fas fa-certificate"></i> CodeForces (Max-rating) : 947 
+        </li>
+      </ul>
+
+
+    </div>
+    <script>
+      // Function to handle smooth page transitions
+      function navigateSmoothly(url) {
+        // Prevent multiple transitions
+        if (document.body.classList.contains("fade-out")) {
+          return;
+        }
+
+        // Store destination URL in sessionStorage
+        sessionStorage.setItem("destinationPage", url);
+
+        // Apply fade-out class to body for smooth exit
+        document.body.classList.add("fade-out");
+
+        // Wait for animation to complete before navigating
+        setTimeout(function () {
+          window.location.href = url;
+        }, 800); // Slightly shorter than CSS transition to ensure it completes
+      }
+
+      // When DOM is fully loaded
+      document.addEventListener("DOMContentLoaded", function () {
+        // Small delay before showing the page
+        setTimeout(function () {
+          document.body.classList.add("loaded");
+        }, 100);
+      });
+
+      // Apply immediately if DOM already loaded (for page refreshes)
+      if (
+        document.readyState === "complete" ||
+        document.readyState === "interactive"
+      ) {
+        setTimeout(function () {
+          document.body.classList.add("loaded");
+        }, 100);
+      }
+    </script>
+  </body>
+</html>

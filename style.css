@@ -1,0 +1,71 @@
+body, html 
+{
+    height: 100%;
+    margin: 0;
+    margin: 0;
+    display:flex;
+    justify-content: center; /* Center horizontally */
+    align-items: center; /* Center vertically */
+    padding: 0;
+    background-color: #0084ff; /* Light blue background */
+    font-family: 'Arial', sans-serif;
+}
+.center-container 
+{
+    height: 100vh; /* Full viewport height */
+    display: flex;
+    justify-content: center;  /* Center horizontally */
+    align-items: center;      /* Center vertically */
+    flex-direction: column;   /* Stack elements vertically */
+    text-align: center;
+}
+.center-container p 
+{
+    font-size: 24px; /* You can adjust this to 30px, 36px, etc. */
+}
+.text-box
+{
+    border:2px solid #000; /* Black border */
+    border-radius: 500px; /* Rounded corners */
+    padding:20px 40px; /* Padding inside the box */
+    background-color: #ffffff; /* White background for the text box */
+    color: #000000; /* Black text color */
+    font-size: 24px; /* Font size for the text */
+    font-weight: bold; /* Bold text */
+    text-align: center; /* Center the text inside the box */
+    margin: 20px; /* Margin around the text box */
+    box-shadow:4px 4px 8px rgba(0, 0, 0, 0.3); /* Shadow effect */
+    transition: all 0.3s ease; /* Smooth transition for hover effect */
+}
+
+.text-box:hover 
+{
+    background-color: #f0f0f0; /* Light gray background on hover */
+    transform: scale(1.05); /* Slightly enlarge the box on hover */
+    cursor: pointer; /* Change cursor to pointer on hover */
+}
+.text-box:active 
+{
+    transform: scale(0.95); /* Slightly shrink the box on click */
+    box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3); /* Reduce shadow on click */
+}
+.text-box:focus 
+{
+    outline: none; /* Remove default outline on focus */
+    box-shadow: 0 0 5px #0084ff; /* Blue glow effect on focus */
+}
+.text-box:focus-visible 
+{
+    outline: none; /* Remove default outline on focus */
+    box-shadow: 0 0 5px #00aaff; /* Blue glow effect on focus */
+}
+.text-box:focus-within 
+{
+    outline: none; /* Remove default outline on focus */
+    box-shadow: 0 0 5px #00aaff; /* Blue glow effect on focus */
+}
+.text-box:focus-visible:active 
+{
+    outline: none; /* Remove default outline on focus */
+    box-shadow: 0 0 5px #00aaff; /* Blue glow effect on focus */
+}

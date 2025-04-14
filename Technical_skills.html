@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+    <title>Technical_Skills_By_Expertise</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+    />
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        background-color: #000000;
+        color: #15ff00;
+        margin: 0;
+        padding: 0;
+        opacity: 0;
+        transform: translateY(20px);
+        transition: opacity 0.8s ease, transform 0.8s ease;
+      }
+      
+      body.loaded {
+        opacity: 1;
+        transform: translateY(0);
+      }
+      
+      body.fade-out {
+        opacity: 0 !important;
+        transform: translateY(-20px) !important;
+      }
+      
+      h1 {
+        text-align: center;
+        margin-top: 20px;
+      }
+      
+      .navigation {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 20px;
+        width: 100%;
+        box-sizing: border-box;
+      }
+      
+      .home-button {
+        background-color: rgb(0, 255, 0);
+        color: rgb(0, 0, 0);
+        font-size: 16px;
+        font-weight: bold;
+        text-decoration: none;
+        display: inline-block;
+        padding: 12px 24px;
+        border-radius: 30px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        box-shadow: 0 4px 15px rgb(0, 255, 0);
+        border: 2px solid transparent;
+        margin: 10px 0;
+      }
+      
+      .home-button:hover {
+        background-color: #000000;
+        color: #00ff00;
+        transform: scale(1.25);
+        border: 2px solid #00ff00;
+        box-shadow: 0 0 20px rgb(0, 255, 0);
+      }
+
+      .back-button {
+        background-color: rgb(0, 255, 0);
+        color: rgb(0, 0, 0);
+        font-size: 16px;
+        font-weight: bold;
+        text-decoration: none;
+        display: inline-block;
+        padding: 12px 24px;
+        border-radius: 30px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        box-shadow: 0 4px 15px rgb(38, 255, 0);
+        border: 2px solid transparent;
+        margin: 10px 0;
+      }
+
+      .back-button:hover {
+        background-color: #000000;
+        color: #00ff00;
+        transform: scale(1.25);
+        border: 2px solid #00ff00;
+        box-shadow: 0 0 20px rgba(0, 255, 0, 0.6);
+      }
+      
+      .logo {
+        font-size: 28px;
+        font-weight: bold;
+        color: #00ff00;
+        text-shadow: 0 0 10px rgba(0, 255, 0, 0.7);
+        letter-spacing: 2px;
+      }
+      
+      .Head {
+        font-size: 2.5em;
+        color: #00ff00;
+        text-align: center;
+        margin-top: 20px;
+        margin-bottom: 30px;
+        border: 2px solid #00ff00;
+        padding: 10px;
+        border-radius: 50px;
+        background-color: #000000;
+        box-shadow: 0 0 10px #00ff00, 0 0 20px #00ff00, 0 0 30px #00ff00;
+        width: 500px;
+        margin-left: auto;
+        margin-right: auto;
+      }
+      
+      .Head:hover {
+        animation: glow 1.5s infinite alternate;
+        transform: scale(1.25);
+        transition: transform 0.3s ease;
+      }
+      
+      .category-section {
+        margin-bottom: 40px;
+      }
+      
+      .category-heading {
+        font-size: 1.6em;
+        color: #00ff00;
+        text-align: center;
+        margin-top: 30px;
+        margin-bottom: 15px;
+        border-bottom: 2px solid #00ff00;
+        padding-bottom: 5px;
+        width: 80%;
+        margin-left: auto;
+        margin-right: auto;
+      }
+      
+      /* Make the UL a flex container so items go side by side */
+      ul {
+        list-style-type: none;
+        display: flex; /* key for side-by-side layout */
+        flex-wrap: wrap; /* allow wrapping if the window is narrow */
+        justify-content: center;
+        padding: 0;
+        margin: 0 auto;
+        max-width: 800px; /* optional: limit how wide the row of skills gets */
+      }
+      
+      ul li {
+        margin: 10px;
+      }
+      
+      /* The skill icons */
+      .tools img,
+      .tool img {
+        width: 50px;
+        height: 50px;
+        margin: 10px;
+        transition: transform 0.3s ease;
+        background-color: #ffffff;
+        border-radius: 50%;
+      }
+      
+      .tools img:hover,
+      .tool img:hover {
+        transform: scale(1.25);
+      }
+      
+      /* The container for each skill icon and name */
+      .tools,
+      .tool {
+        display: inline-block;
+        text-align: center;
+      }
+      
+      .toolname {
+        display: block;
+        margin-top: 5px;
+        font-size: 0.9em;
+        color: #00ff00;
+      }
+      
+      .skill-description {
+        text-align: center;
+        font-size: 1.1em;
+        margin-bottom: 20px;
+        color: #88ff88;
+      }
+      
+      @keyframes glow {
+        from {
+          box-shadow: 0 0 10px #00ff00, 0 0 20px #00ff00;
+        }
+        to {
+          box-shadow: 0 0 15px #00ff00, 0 0 30px #00ff00, 0 0 45px #00ff00;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="navigation">
+      <a
+        href="index.html"
+        class="home-button"
+        onclick="navigateSmoothly('index.html'); return false;"
+      >
+        <i class="fas fa-home"></i> Home
+      </a>
+      <a
+        href="Details.html"
+        class="back-button"
+        onclick="navigateSmoothly('Details.html'); return false;"
+      >
+        <i class="fas fa-arrow-left"></i> Go Back
+      </a>
+    </div>
+    <header>
+      <h1 class="Head">Technical Skills</h1>
+
+      <!-- Very Good Category -->
+      <div class="category-section">
+        <h2 class="category-heading">Very Good</h2>
+        <p class="skill-description">
+          Technologies I've mastered with extensive hands-on experience
+        </p>
+        <ul>
+          <li>
+            <div class="tools">
+              <img
+                src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/c/c-original.svg"
+                alt="C"
+                class="tools-list"
+              />
+              <span class="toolname">C</span>
+            </div>
+          </li>
+          <li>
+            <div class="tools">
+              <img
+                src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/cplusplus/cplusplus-original.svg"
+                alt="C++"
+                class="tools-list"
+              />
+              <span class="toolname">C++</span>
+            </div>
+          </li>
+        </ul>
+      </div>
+
+      <!-- Good Category -->
+      <div class="category-section">
+        <h2 class="category-heading">Good</h2>
+        <p class="skill-description">
+          Technologies I work with confidently and effectively
+        </p>
+        <ul>
+          <li>
+            <div class="tools">
+              <img
+                src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg"
+                alt="MySQL"
+                class="tools-list"
+              />
+              <span class="toolname">SQL</span>
+            </div>
+          </li>
+          <li>
+            <div class="tools">
+              <img
+                src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mongodb/mongodb-original.svg"
+                alt="Mongo DB"
+                class="tools-list"
+              />
+              <span class="toolname">No SQL</span>
+            </div>
+          </li>
+          <li>
+            <div class="tools">
+              <img
+                src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg"
+                alt="Python"
+                class="tools-list"
+              />
+              <span class="toolname">Python</span>
+            </div>
+          </li>
+        </ul>
+      </div>
+
+      <!-- Intermediate Category -->
+      <div class="category-section">
+        <h2 class="category-heading">Intermediate</h2>
+        <p class="skill-description">
+          Technologies I have working knowledge and practical experience with
+        </p>
+        <ul>
+          <li>
+            <div class="tools">
+              <img
+                src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg"
+                alt="Git"
+                class="tools-list"
+              />
+              <span class="toolname">Git</span>
+            </div>
+          </li>
+          <li>
+            <div class="tool">
+              <img
+                src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg"
+                alt="GitHub"
+                class="tools-list"
+              />
+              <span class="toolname">GitHub</span>
+            </div>
+          </li>
+          <li>
+            <div class="tools">
+              <img
+                src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg"
+                alt="HTML5"
+                class="tools-list"
+              />
+              <span class="toolname">HTML</span>
+            </div>
+          </li>
+          <li>
+            <div class="tools">
+              <img
+                src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg"
+                alt="CSS3"
+                class="tools-list"
+              />
+              <span class="toolname">CSS</span>
+            </div>
+          </li>
+          <li>
+            <div class="tool">
+              <img
+                src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/bash/bash-original.svg"
+                alt="Bash"
+                class="tools-list"
+              />
+              <span class="toolname">Bash</span>
+            </div>
+          </li>
+        </ul>
+      </div>
+
+      <!-- Beginner Category -->
+      <div class="category-section">
+        <h2 class="category-heading">Beginner</h2>
+        <p class="skill-description">
+          Technologies I'm currently learning and developing skills with
+        </p>
+        <ul>
+          <li>
+            <div class="tools">
+              <img
+                src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg"
+                alt="JavaScript"
+                class="tools-list"
+              />
+              <span class="toolname">JavaScript</span>
+            </div>
+          </li>
+          <li>
+            <div class="tools">
+              <img
+                src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg"
+                alt="Node"
+                class="tools-list"
+              />
+              <span class="toolname">Node</span>
+            </div>
+          </li>
+          <li>
+            <div class="tools">
+              <img
+                src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/fastapi/fastapi-original.svg"
+                alt="Fast API"
+                class="tools-list"
+              />
+              <span class="toolname">Fast API</span>
+            </div>
+          </li>
+          <li>
+            <div class="tools">
+              <img src="conda.png" alt="Conda" class="tools-list" />
+              <span class="toolname">Conda</span>
+            </div>
+          </li>
+          <li>
+            <div class="tools">
+              <img
+                src="icons8-rest-api-16.png"
+                alt="REST API"
+                class="tools-list"
+              />
+              <span class="toolname">REST API</span>
+            </div>
+          </li>
+          <li>
+            <div class="tools">
+              <img src="matplotlib.png" alt="matplotlib" class="tools-list" />
+              <span class="toolname">Matplotlib</span>
+            </div>
+          </li>
+          <li>
+            <div class="tools">
+              <img src="Numpy.png" alt="numpy" class="tools-list" />
+              <span class="toolname">NumPy</span>
+            </div>
+          </li>
+          <li>
+            <div class="tools">
+              <img src="pygame.png" alt="pygame" class="tools-list" />
+              <span class="toolname">Pygame</span>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </header>
+    <script>
+      // Function to handle smooth page transitions
+      function navigateSmoothly(url) {
+        // Prevent multiple transitions
+        if (document.body.classList.contains("fade-out")) {
+          return;
+        }
+
+        // Store destination URL in sessionStorage
+        sessionStorage.setItem("destinationPage", url);
+
+        // Apply fade-out class to body for smooth exit
+        document.body.classList.add("fade-out");
+
+        // Wait for animation to complete before navigating
+        setTimeout(function () {
+          window.location.href = url;
+        }, 800); // Slightly shorter than CSS transition to ensure it completes
+      }
+
+      // When DOM is fully loaded
+      document.addEventListener("DOMContentLoaded", function () {
+        // Small delay before showing the page
+        setTimeout(function () {
+          document.body.classList.add("loaded");
+        }, 100);
+      });
+
+      // Apply immediately if DOM already loaded (for page refreshes)
+      if (
+        document.readyState === "complete" ||
+        document.readyState === "interactive"
+      ) {
+        setTimeout(function () {
+          document.body.classList.add("loaded");
+        }, 100);
+      }
+    </script>
+  </body>
+</html>

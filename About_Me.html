@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>About Me - G.phanindra</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+    />
+    <style>
+      :root {
+        --main-bg-color: #000000;
+        --accent-color: #000000;
+        --text-color: #00ff2f;
+        --secondary-text: #00ff37;
+        --button-color: #0084ff;
+        --button-hover: #004992;
+        --transition-duration: 1200ms;
+        --neon-green: #00ff00;
+      }
+
+      body {
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        background-color: var(--main-bg-color);
+        margin: 0;
+        padding: 0;
+        color: var(--text-color);
+        line-height: 1.6;
+        /* Initial state for page load animation */
+        opacity: 0;
+        transform: translateY(20px);
+        transition: opacity var(--transition-duration) ease,
+                    transform var(--transition-duration) ease;
+      }
+
+      /* Class applied after DOM load to trigger animation */
+      body.loaded {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      /* Class applied before navigation to trigger fade-out */
+      body.fade-out {
+        opacity: 0 !important;
+        transform: translateY(-30px) !important;
+      }
+
+      .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 20px;
+        display: grid;
+        grid-template-columns: 2fr 1fr;
+        gap: 30px;
+      }
+
+      header {
+        background-color: var(--accent-color);
+        color: rgb(0, 255, 13);
+        padding: 20px 0;
+        text-align: center;
+        margin-bottom: 30px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      }
+
+      h1,
+      h2 {
+        color: var(--text-color);
+        margin-top: 0;
+        border-bottom: 2px solid var(--accent-color);
+        padding-bottom: 10px;
+      }
+
+      header h1 {
+        font-size: 2.5rem;
+        border-bottom: none;
+        color: rgb(0, 255, 17);
+      }
+
+      .content-section {
+        background-color: rgb(0, 0, 0);
+        padding: 25px;
+        border-radius: 8px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        margin-bottom: 25px;
+        transition: all 0.3s ease;
+        border-bottom: 1px solid #04ff00;
+      }
+
+      .profile-section {
+        grid-column: 2;
+        grid-row: span 2;
+      }
+
+      .main-content {
+        grid-column: 1;
+      }
+
+      .profile-photo {
+        width: 100%;
+        border-radius: 8px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        margin-bottom: 20px;
+        display: block;
+      }
+
+      .navigation {
+        text-align: center;
+        padding: 15px 0;
+        background-color: rgba(0, 0, 0, 0.9);
+        position: sticky;
+        top: 0;
+        z-index: 100;
+        border-bottom: 1px solid #04ff00;
+      }
+
+      .button {
+        display: inline-block;
+        padding: 12px 24px;
+        background-color: rgb(0, 255, 0);
+        color: rgb(0, 0, 0);
+        text-decoration: none;
+        border-radius: 20px;
+        transition: all 0.3s ease;
+        margin: 0 10px;
+        font-weight: bold;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+      }
+
+      .button:hover {
+        background-color: black;
+        color: rgb(0, 255, 0);
+        transform: translateY(-2px);
+        box-shadow: 0 4px 8px rgb(26, 255, 0);
+      }
+
+      ol {
+        padding-left: 20px;
+      }
+
+      li {
+        margin-bottom: 15px;
+      }
+
+      .social-links {
+        text-align: center;
+        margin-top: 20px;
+      }
+
+      .social-icon {
+        color: var(--text-color);
+        text-decoration: none;
+        font-size: 2rem;
+        margin: 0 10px;
+        transition: transform 0.3s ease, color 0.3s ease;
+        display: inline-block;
+      }
+
+      .social-icon:hover {
+        transform: scale(1.2);
+        color: var(--accent-color);
+      }
+
+      .contact-info {
+        font-size: 1.1rem;
+        margin-bottom: 20px;
+      }
+
+      footer {
+        text-align: center;
+        padding: 20px;
+        background-color: var(--accent-color);
+        color: rgb(4, 255, 0);
+        margin-top: 30px;
+      }
+
+      @media (max-width: 768px) {
+        .container {
+          grid-template-columns: 1fr;
+        }
+
+        .profile-section,
+        .main-content {
+          grid-column: 1;
+        }
+
+        .profile-photo {
+          max-width: 300px;
+          margin: 0 auto 20px;
+        }
+      }
+      .home-button {
+        background-color: rgb(0, 255, 0);
+        color: rgb(0, 0, 0);
+        font-size: 16px;
+        font-weight: bold;
+        text-decoration: none;
+        display: inline-block;
+        padding: 12px 24px;
+        border-radius: 30px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        box-shadow: 0 4px 15px rgba(0, 255, 0, 0.4);
+        border: 2px solid transparent;
+        margin-right: 10px;
+      }
+
+      .home-button:hover {
+        background-color: black;
+        color: var(--neon-green);
+        transform: scale(1.05);
+        border: 2px solid var(--neon-green);
+        box-shadow: 0 0 20px rgba(0, 255, 0, 0.6);
+      }
+      .back-button {
+            background-color: rgb(0, 255, 0);
+            color: rgb(0, 0, 0);
+            font-size: 16px;
+            font-weight: bold;
+            text-decoration: none;
+            display: inline-block;
+            padding: 12px 24px;
+            border-radius: 30px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0, 255, 0, 0.4);
+            border: 2px solid transparent;
+        }
+
+        .back-button:hover {
+            background-color: #000000;
+            color: #00ff00;
+            transform: scale(1.05);
+            border: 2px solid #00ff00;
+            box-shadow: 0 0 20px rgba(0, 255, 0, 0.6);
+        }
+    </style>
+  </head>
+  <body>
+    <header>
+      <h1>About Me</h1>
+      <p><strong>Welcome to my personal page!</strong></p>
+    </header>
+
+    <div class="navigation">
+        <div class="logo"></div>
+        <a
+          href="#"
+          class="home-button"
+          onclick="navigateSmoothly('index.html'); return false;"
+        >
+          <i class="fas fa-home"></i> Home
+        </a>
+      <a href="#" class="back-button" onclick="navigateSmoothly('Details.html'); return false;">
+        <i class="fas fa-arrow-left"></i> Go Back
+    </a>
+    </div>
+
+    <div class="container">
+      <div class="main-content">
+        <div class="content-section">
+          <h2>My Introduction</h2>
+          <p>
+            My name is G.phanindra and my Birth place is Eluru but I live in kakinada, Andhra Pradesh, 
+            India.
+            <br />
+            I am currently pursuing my B.Tech in Computer Science and
+            Engineering at International Institute of Information Technology,
+            Hyderabad.
+          </p>
+        </div>
+
+        <div class="content-section">
+          <h2>My Interests</h2>
+          <ol>
+            <li>
+              I am passionate about technology and its potential to change the
+              world and in making people's lives better.
+            </li>
+            <li>
+              I am always eager to learn and explore new things especially about
+              physics and Internet of things (IOT) innovations.
+            </li>
+            <li>
+              I enjoy working on projects that challenge me and allow me to grow
+              as a developer.
+            </li>
+            <li>
+              I am also interested in web development, machine learning, and
+              artificial intelligence.
+            </li>
+          </ol>
+        </div>
+
+        <div class="content-section">
+          <h2>My Hobbies</h2>
+          <ol>
+            <li>
+              I love playing badminton and watching ANIME (especially Shonen
+              genre) in my free time.
+            </li>
+            <li>I enjoy reading books, especially inspirational ones.</li>
+            <li>
+              I am a big fan of music and enjoy listening to different genres of
+              music (especially Melody).
+            </li>
+            <li>I love to spend time with my family and friends.</li>
+          </ol>
+        </div>
+
+        <div class="content-section">
+          <h2>My Goals</h2>
+          <ol>
+            <li>
+              My short-term goal is to become a skilled developer and contribute
+              to the tech industry by working on innovative projects.
+            </li>
+            <li>
+              My long-term goal is to become a successful entrepreneur and
+              create my own tech startup.
+            </li>
+            <li>
+              I also want to learn and explore more about the world of
+              technology and its applications.
+            </li>
+            <li>
+              I aspire to make a positive impact on society through my work and
+              innovations.
+            </li>
+          </ol>
+        </div>
+      </div>
+
+      <div class="profile-section">
+        <div class="content-section">
+          <img src="My_pic.jpg" alt="G.phanindra" class="profile-photo" />
+          <div class="contact-info">
+            <p><strong>Phone:</strong> 8374436681</p>
+          </div>
+          <div class="social-links">
+            <a
+              href="mailto:phanindragollapalli1729@gmail.com"
+              target="_blank"
+              class="social-icon"
+            >
+              <i class="fas fa-envelope"></i>
+            </a>
+            <a
+              href="https://www.instagram.com/phanindra.gollapalli/"
+              target="_blank"
+              class="social-icon"
+            >
+              <i class="fab fa-instagram"></i>
+            </a>
+            <a
+              href="https://www.facebook.com/phanindra.gollapalli.2025/"
+              target="_blank"
+              class="social-icon"
+            >
+              <i class="fab fa-facebook"></i>
+            </a>
+            <a
+              href="https://www.linkedin.com/in/phanindra-gollapalli-a1a8bb329/"
+              target="_blank"
+              class="social-icon"
+            >
+              <i class="fab fa-linkedin"></i>
+            </a>
+            <a
+              href="https://github.com/phanindragollapalli"
+              target="_blank"
+              class="social-icon"
+            >
+              <i class="fab fa-github"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <footer>&copy; 2025 G.phanindra | All Rights Reserved</footer>
+    <script>
+      // Function to handle smooth page transitions
+      function navigateSmoothly(url) {
+        // Store that we're transitioning in sessionStorage
+        sessionStorage.setItem("isPageTransitioning", "true");
+
+        // Apply fade-out class
+        document.body.classList.add("fade-out");
+
+        // Wait for animation to complete before navigating
+        setTimeout(function () {
+          window.location.href = url;
+        }, 1000); // Match your transition duration
+      }
+
+      // Wait for DOM content to load before starting animations
+      document.addEventListener("DOMContentLoaded", function () {
+        try {
+          // Check if we're coming from another page
+          const isTransitioning =
+            sessionStorage.getItem("isPageTransitioning") === "true";
+
+          if (isTransitioning) {
+            // Clear the transitioning flag
+            sessionStorage.removeItem("isPageTransitioning");
+          }
+
+          // Small delay to ensure animations trigger properly
+          setTimeout(function () {
+            document.body.classList.add("loaded");
+          }, 100);
+        } catch (e) {
+          console.error("Error in page transition:", e);
+          // Fallback - make sure page is visible
+          document.body.style.opacity = 1;
+          document.body.style.transform = "translateY(0)";
+        }
+      });
+
+      // Fallback in case DOMContentLoaded never fires
+      setTimeout(function () {
+        if (!document.body.classList.contains("loaded")) {
+          document.body.style.opacity = 1;
+          document.body.style.transform = "translateY(0)";
+          console.warn("Fallback page visibility activated");
+        }
+      }, 2000);
+      </script> 
+  </body>
+</html>
