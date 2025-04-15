@@ -1,268 +1,329 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Education</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+    />
     <style>
-        :root {
-            --transition-duration: 1200ms;
-            --neon-green: #00ff00;
-            --black: #000000;
-        }
+      :root {
+        --transition-duration: 1200ms;
+        --neon-green: #00ff00;
+        --black: #000000;
+      }
+      body {
+        font-family: Arial, sans-serif;
+        background-color: #000000;
+        margin: 0;
+        padding: 20px;
+        color: #00ff00;
+        opacity: 0;
+        transform: translateY(20px);
+        transition: opacity var(--transition-duration) ease,
+          transform var(--transition-duration) ease;
+      }
+      body.loaded {
+        opacity: 1;
+        transform: translateY(0);
+      }
+      body.fade-out {
+        opacity: 0 !important;
+        transform: translateY(-30px) !important;
+      }
 
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #000000;
-            margin: 0;
-            padding: 20px;
-            color: #00ff00;
-            /* Initial state for page load animation */
-            opacity: 0;
-            transform: translateY(20px);
-            transition: opacity var(--transition-duration) ease,
-                      transform var(--transition-duration) ease;
-        }
+      h1 {
+        color: #0dff00;
+        text-align: left;
+        font-size: 30px;
+        font-weight: bold;
+      }
+      h2 {
+        color: #15ff00;
+        text-align: left;
+        font-size: 15px;
+        font-weight: bold;
+      }
+      .Heading {
+        background-color: #000000;
+        padding-top: 20px;
+        padding-bottom: 50px;
+        padding-left: 20px;
+        padding-right: 20px;
+        text-align: center;
+        color: #00ff00;
+        font-size: 36px;
+        font-weight: bold;
+        border: 2px solid #00ff00;
+        border-radius: 100px;
+        box-shadow: 0 0 20px rgb(0, 255, 0);
+        border-radius: 20px;
+        width: 200px;
+        height: 20px;
+        box-shadow: 0 0 10px rgba(0, 255, 0, 0.5);
+        margin: 0 auto;
+      }
+      strong {
+        color: #00ff00;
+      }
+      .navigation {
+        text-align: center;
+        padding: 15px 0;
+        background-color: rgba(0, 0, 0, 0.9);
+        position: sticky;
+        top: 0;
+        z-index: 100;
+        border-bottom: 1px solid #04ff00;
+        margin-bottom: 20px;
+      }
+      .home-button {
+        background-color: rgb(0, 255, 0);
+        color: rgb(0, 0, 0);
+        font-size: 16px;
+        font-weight: bold;
+        text-decoration: none;
+        display: inline-block;
+        padding: 12px 24px;
+        border-radius: 30px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        box-shadow: 0 4px 15px rgba(0, 255, 0, 0.4);
+        border: 2px solid transparent;
+        margin-right: 10px;
+      }
 
-        /* Class applied after DOM load to trigger animation */
-        body.loaded {
-            opacity: 1;
-            transform: translateY(0);
-        }
+      .home-button:hover {
+        background-color: #000000;
+        color: #00ff00;
+        transform: scale(1.05);
+        border: 2px solid #00ff00;
+        box-shadow: 0 0 20px rgba(0, 255, 0, 0.6);
+      }
 
-        /* Class applied before navigation to trigger fade-out */
-        body.fade-out {
-            opacity: 0 !important;
-            transform: translateY(-30px) !important;
-        }
+      .back-button {
+        background-color: rgb(0, 255, 0);
+        color: rgb(0, 0, 0);
+        font-size: 16px;
+        font-weight: bold;
+        text-decoration: none;
+        display: inline-block;
+        padding: 12px 24px;
+        border-radius: 30px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        box-shadow: 0 4px 15px rgba(0, 255, 0, 0.4);
+        border: 2px solid transparent;
+      }
 
-        h1 {
-            color: #0dff00;
-            text-align: left;
-            font-size: 30px;
-            font-weight: bold;
-        }
-        h2 {
-            color: #15ff00;
-            text-align: left;
-            font-size: 15px;
-            font-weight: bold;
-        }
-        .Heading {
-            background-color: #000000;
-            padding-top: 20px;
-            padding-bottom: 50px;
-            padding-left: 20px;
-            padding-right: 20px;
-            text-align: center;
-            color: #00ff00;
-            font-size: 36px;
-            font-weight: bold;
-            border: 2px solid #00ff00;
-            border-radius: 100px;
-            box-shadow: 0 0 20px rgb(0, 255, 0);
-            border-radius: 20px;
-            width: 200px;
-            height: 20px;
-            box-shadow: 0 0 10px rgba(0, 255, 0, 0.5);
-            margin: 0 auto;
-        }
-        strong {
-            color: #00ff00;
-        }
-        .navigation {
-            text-align: center;
-            padding: 15px 0;
-            background-color: rgba(0, 0, 0, 0.9);
-            position: sticky;
-            top: 0;
-            z-index: 100;
-            border-bottom: 1px solid #04ff00;
-            margin-bottom: 20px;
-        }
-        .home-button {
-            background-color: rgb(0, 255, 0);
-            color: rgb(0, 0, 0);
-            font-size: 16px;
-            font-weight: bold;
-            text-decoration: none;
-            display: inline-block;
-            padding: 12px 24px;
-            border-radius: 30px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            box-shadow: 0 4px 15px rgba(0, 255, 0, 0.4);
-            border: 2px solid transparent;
-            margin-right: 10px;
-        }
+      .back-button:hover {
+        background-color: #000000;
+        color: #00ff00;
+        transform: scale(1.05);
+        border: 2px solid #00ff00;
+        box-shadow: 0 0 20px rgba(0, 255, 0, 0.6);
+      }
 
-        .home-button:hover {
-            background-color: #000000;
-            color: #00ff00;
-            transform: scale(1.05);
-            border: 2px solid #00ff00;
-            box-shadow: 0 0 20px rgba(0, 255, 0, 0.6);
-        }
-        
-        .back-button {
-            background-color: rgb(0, 255, 0);
-            color: rgb(0, 0, 0);
-            font-size: 16px;
-            font-weight: bold;
-            text-decoration: none;
-            display: inline-block;
-            padding: 12px 24px;
-            border-radius: 30px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            box-shadow: 0 4px 15px rgba(0, 255, 0, 0.4);
-            border: 2px solid transparent;
-        }
+      .logo {
+        font-size: 28px;
+        font-weight: bold;
+        color: #00ff00;
+        text-shadow: 0 0 10px rgba(0, 255, 0, 0.7);
+        letter-spacing: 2px;
+      }
 
-        .back-button:hover {
-            background-color: #000000;
-            color: #00ff00;
-            transform: scale(1.05);
-            border: 2px solid #00ff00;
-            box-shadow: 0 0 20px rgba(0, 255, 0, 0.6);
-        }
+      .image-gallery {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 15px;
+        margin-top: 30px;
+      }
 
-        .logo {
-            font-size: 28px;
-            font-weight: bold;
-            color: #00ff00;
-            text-shadow: 0 0 10px rgba(0, 255, 0, 0.7);
-            letter-spacing: 2px;
-        }
+      .image-gallery img {
+        border-radius: 8px;
+        box-shadow: 0 0 15px rgba(0, 255, 0, 0.3);
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+      }
 
-        .image-gallery {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 15px;
-            margin-top: 30px;
-        }
+      .image-gallery img:hover {
+        transform: scale(1.05);
+        box-shadow: 0 0 20px rgba(0, 255, 0, 0.7);
+      }
 
-        .image-gallery img {
-            border-radius: 8px;
-            box-shadow: 0 0 15px rgba(0, 255, 0, 0.3);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
+      .education-section {
+        margin-bottom: 30px;
+      }
 
-        .image-gallery img:hover {
-            transform: scale(1.05);
-            box-shadow: 0 0 20px rgba(0, 255, 0, 0.7);
-        }
-        
-        .education-section {
-            margin-bottom: 30px;
-        }
-        
-        ul {
-            margin-left: 20px;
-            margin-bottom: 25px;
-        }
-        
-        li {
-            margin-bottom: 8px;
-        }
+      ul {
+        margin-left: 20px;
+        margin-bottom: 25px;
+      }
+
+      li {
+        margin-bottom: 8px;
+      }
     </style>
-</head>
-<body>
+  </head>
+  <body>
     <div class="navigation">
-        <a href="#" class="home-button" onclick="navigateSmoothly('index.html'); return false;">
-            <i class="fas fa-home"></i> Home
-        </a>
-        <a href="#" class="back-button" onclick="navigateSmoothly('Details.html'); return false;">
-            <i class="fas fa-arrow-left"></i> Go Back
-        </a>
+      <a
+        href="#"
+        class="home-button"
+        onclick="navigateSmoothly('index.html'); return false;"
+      >
+        <i class="fas fa-home"></i> Home
+      </a>
+      <a
+        href="#"
+        class="back-button"
+        onclick="navigateSmoothly('Details.html'); return false;"
+      >
+        <i class="fas fa-arrow-left"></i> Go Back
+      </a>
     </div>
 
     <header class="Heading"><strong>Education</strong></header>
-    
+
     <div class="education-section">
-        <h1>Elementary School</h1>
-        <ul>
-            <li>St. Antony convent: 2010 - 2011</li>
-            <li>Narayana convent: 2011 - 2012</li>
-            <li>Sri Raman Public School: 2012 - 2017</li>
-        </ul>
+      <h1>Elementary School</h1>
+      <ul>
+        <li>St. Antony convent: 2010 - 2011</li>
+        <li>Narayana convent: 2011 - 2012</li>
+        <li>Sri Raman Public School: 2012 - 2017</li>
+      </ul>
     </div>
-    
+
     <div class="education-section">
-        <h1>High School</h1>
-        <ul>
-            <li>APSP 3rd Betalion E.M High School: 2017-2019</li>
-            <li>Aditya Talent School-Gangaraju nagar: 2019 - 2022</li>
-            <li>Aditya Junior college-Gangaraju nagar: 2022 - 2024</li>
-        </ul>
+      <h1>High School</h1>
+      <ul>
+        <li>APSP 3rd Betalion E.M High School: 2017-2019</li>
+        <li>Aditya Talent School-Gangaraju nagar: 2019 - 2022</li>
+        <li>Aditya Junior college-Gangaraju nagar: 2022 - 2024</li>
+      </ul>
     </div>
-    
+
     <div class="education-section">
-        <h1>Under Graduation(UG)</h1>
-        <ul>
-            <li>First year student in @IIITHYD (International Institute of Information and Technology Hyderabad): 2024 - 2025</li>
-        </ul>
+      <h1>Under Graduation(UG)</h1>
+      <ul>
+        <li>
+          First year student in @IIITHYD (International Institute of Information
+          and Technology Hyderabad): 2024 - 2025
+        </li>
+      </ul>
     </div>
 
     <div class="image-gallery">
-        <img src="https://temple.yatradham.org/public/Product/temple/temple_Te2hYaLI_202307141524050.webp" alt="kakinada" width="200" height="200">
-        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSOTFPgAKiyp3-ZcgtISxG6ZTVbqNIPj1fi1Q&s" alt="kakinada" width="200" height="200">
-        <img src="https://imgmediagumlet.lbb.in/media/2019/01/5c332aa4248a58432e18e02b_1546857124808.jpg" alt="kakinada" width="200" height="200">
-        <img src="https://tripxl.com/blog/wp-content/uploads/2024/09/view-of-one-of-the-beaches-in-kakinada-OG-Photo.jpg" alt="kakinada" width="200" height="200">
-        <img src="https://images.picxy.com/cache/2019/5/14/4dfd83e9bf1b3d929845bd42cbee9b7e.jpg" alt="kakinada" width="200" height="200">
-        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQiFArQyLGHeb_jr4ZsTNi4gG8CAeVxmQjWvA&s" alt="Eluru" width="200" height="200">
-        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR3f94vPPA0g1c0IaJumAunr_dK9VwOYGFdMg&s" alt="Eluru" width="200" height="200">
+      <img
+        src="https://temple.yatradham.org/public/Product/temple/temple_Te2hYaLI_202307141524050.webp"
+        alt="kakinada"
+        width="200"
+        height="200"
+      />
+      <img
+        src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSOTFPgAKiyp3-ZcgtISxG6ZTVbqNIPj1fi1Q&s"
+        alt="kakinada"
+        width="200"
+        height="200"
+      />
+      <img
+        src="https://imgmediagumlet.lbb.in/media/2019/01/5c332aa4248a58432e18e02b_1546857124808.jpg"
+        alt="kakinada"
+        width="200"
+        height="200"
+      />
+      <img
+        src="https://tripxl.com/blog/wp-content/uploads/2024/09/view-of-one-of-the-beaches-in-kakinada-OG-Photo.jpg"
+        alt="kakinada"
+        width="200"
+        height="200"
+      />
+      <img
+        src="https://images.picxy.com/cache/2019/5/14/4dfd83e9bf1b3d929845bd42cbee9b7e.jpg"
+        alt="kakinada"
+        width="200"
+        height="200"
+      />
+      <img
+        src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQiFArQyLGHeb_jr4ZsTNi4gG8CAeVxmQjWvA&s"
+        alt="Eluru"
+        width="200"
+        height="200"
+      />
+      <img
+        src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR3f94vPPA0g1c0IaJumAunr_dK9VwOYGFdMg&s"
+        alt="Eluru"
+        width="200"
+        height="200"
+      />
     </div>
 
     <script>
-        // Function to handle smooth page transitions
-        function navigateSmoothly(url) {
-            // Store that we're transitioning in sessionStorage
-            sessionStorage.setItem("isPageTransitioning", "true");
-
-            // Apply fade-out class
-            document.body.classList.add("fade-out");
-
-            // Wait for animation to complete before navigating
-            setTimeout(function () {
-                window.location.href = url;
-            }, 1000); // Match your transition duration
-        }
-
-        // Wait for DOM content to load before starting animations
-        document.addEventListener("DOMContentLoaded", function () {
-            try {
-                // Check if we're coming from another page
-                const isTransitioning =
-                    sessionStorage.getItem("isPageTransitioning") === "true";
-
-                if (isTransitioning) {
-                    // Clear the transitioning flag
-                    sessionStorage.removeItem("isPageTransitioning");
-                }
-
-                // Small delay to ensure animations trigger properly
-                setTimeout(function () {
-                    document.body.classList.add("loaded");
-                }, 100);
-            } catch (e) {
-                console.error("Error in page transition:", e);
-                // Fallback - make sure page is visible
-                document.body.style.opacity = 1;
-                document.body.style.transform = "translateY(0)";
-            }
-        });
-
-        // Fallback in case DOMContentLoaded never fires
+      function navigateSmoothly(url) {
+        sessionStorage.setItem("isPageTransitioning", "true");
+        document.body.classList.add("fade-out");
         setTimeout(function () {
-            if (!document.body.classList.contains("loaded")) {
-                document.body.style.opacity = 1;
-                document.body.style.transform = "translateY(0)";
-                console.warn("Fallback page visibility activated");
-            }
-        }, 2000);
+          window.location.href = url;
+        }, 1000); 
+      }
+      document.addEventListener("DOMContentLoaded", function () {
+        try {
+          const isTransitioning =
+            sessionStorage.getItem("isPageTransitioning") === "true";
+
+          if (isTransitioning) {
+            sessionStorage.removeItem("isPageTransitioning");
+          }
+          setTimeout(function () {
+            document.body.classList.add("loaded");
+          }, 100);
+        } catch (e) {
+          console.error("Error in page transition:", e);
+          document.body.style.opacity = 1;
+          document.body.style.transform = "translateY(0)";
+        }
+      });
+      setTimeout(function () {
+        if (!document.body.classList.contains("loaded")) {
+          document.body.style.opacity = 1;
+          document.body.style.transform = "translateY(0)";
+          console.warn("Fallback page visibility activated");
+        }
+      }, 2000);
+      window.onload = function () {
+
+        console.log(new Date() + " - Page viewed");
+
+    
+        document.onclick = function (event) {
+          var clicked = event.target;
+
+ 
+          var type = "element";
+
+       
+          if (clicked.tagName == "IMG") type = "image";
+          if (clicked.tagName == "A") type = "link";
+          if (clicked.tagName == "P") type = "text";
+          if (clicked.tagName == "SELECT") type = "drop-down";
+
+    
+          console.log(new Date() + " - Clicked " + type);
+        };
+
+    
+        logElement("image", "Profile picture");
+        logElement("text", "About myself paragraph");
+        logElement("section", "Education background");
+        logElement("section", "Technical skills");
+        logElement("link", "CV PDF");
+      };
+
+  
+      function logElement(type, description) {
+        console.log(new Date() + " - Viewed " + type + ": " + description);
+      }
     </script>
-</body>
+  </body>
 </html>

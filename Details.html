@@ -9,7 +9,7 @@
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
     />
     <style>
-      /* Consistent transition variables */
+
       :root {
         --transition-duration: 1200ms;
         --neon-green: #00ff00;
@@ -33,20 +33,18 @@
         font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
         color: var(--white);
         overflow-x: hidden;
-        /* Initial state for page load animation */
-        opacity: 1; /* Changed from 0 to 1 as fallback */
-        transform: translateY(0); /* Changed from 20px to 0 as fallback */
+        opacity: 1; 
+        transform: translateY(0); 
         transition: opacity var(--transition-duration) ease,
           transform var(--transition-duration) ease;
       }
 
-      /* Class applied after DOM load to trigger animation */
       body.loaded {
         opacity: 1;
         transform: translateY(0);
       }
 
-      /* Class applied before navigation to trigger fade-out */
+
       body.fade-out {
         opacity: 0 !important;
         transform: translateY(-30px) !important;
@@ -191,7 +189,7 @@
         transform: scale(0.98) translateY(-2px);
       }
 
-      /* For CV download button - keep the same styling as menu-button */
+     
       .cv-button {
         background-color: rgba(0, 0, 0, 0.7);
         border: 2px solid var(--neon-green);
@@ -211,7 +209,7 @@
         align-items: center;
         justify-content: center;
         width: 100%;
-        text-decoration: none; /* Remove underline from the link */
+        text-decoration: none; 
       }
 
       .cv-button::before {
@@ -272,7 +270,8 @@
       }
 
       @media (max-width: 768px) {
-        .menu-button, .cv-button {
+        .menu-button,
+        .cv-button {
           font-size: 18px;
           padding: 20px 15px;
         }
@@ -349,55 +348,52 @@
           <i class="fas fa-laptop-code"></i> Technical Skills
         </button>
 
-        <!-- Updated CV download button to match other buttons -->
+       
         <a href="My_CV.pdf" download class="cv-button">
           <i class="fas fa-file-download"></i> Download My CV
         </a>
       </div>
     </div>
 
-    <footer class="footer">&copy; 2025 G.phanindra | All Rights Reserved</footer>
+    <footer class="footer">
+      &copy; 2025 G.phanindra | All Rights Reserved
+    </footer>
 
     <script>
-      // Function to handle smooth page transitions
       function navigateSmoothly(url) {
-        // Store that we're transitioning in sessionStorage
         sessionStorage.setItem("isPageTransitioning", "true");
 
-        // Apply fade-out class
         document.body.classList.add("fade-out");
 
-        // Wait for animation to complete before navigating
         setTimeout(function () {
           window.location.href = url;
-        }, 1000); // Match your transition duration
+        }, 1000); 
       }
 
-      // Wait for DOM content to load before starting animations
+
       document.addEventListener("DOMContentLoaded", function () {
         try {
-          // Check if we're coming from another page
           const isTransitioning =
             sessionStorage.getItem("isPageTransitioning") === "true";
 
           if (isTransitioning) {
-            // Clear the transitioning flag
+       
             sessionStorage.removeItem("isPageTransitioning");
           }
 
-          // Small delay to ensure animations trigger properly
+        
           setTimeout(function () {
             document.body.classList.add("loaded");
           }, 100);
         } catch (e) {
           console.error("Error in page transition:", e);
-          // Fallback - make sure page is visible
+     
           document.body.style.opacity = 1;
           document.body.style.transform = "translateY(0)";
         }
       });
 
-      // Fallback in case DOMContentLoaded never fires
+
       setTimeout(function () {
         if (!document.body.classList.contains("loaded")) {
           document.body.style.opacity = 1;
@@ -405,6 +401,40 @@
           console.warn("Fallback page visibility activated");
         }
       }, 2000);
+
+
+      window.onload = function () {
+        console.log(new Date() + " - Page viewed");
+
+ 
+        document.onclick = function (event) {
+        
+          var clicked = event.target;
+
+    
+          var type = "element";
+
+
+          if (clicked.tagName == "IMG") type = "image";
+          if (clicked.tagName == "A") type = "link";
+          if (clicked.tagName == "P") type = "text";
+          if (clicked.tagName == "SELECT") type = "drop-down";
+
+    
+          console.log(new Date() + " - Clicked " + type);
+        };
+
+ 
+        logElement("image", "Profile picture");
+        logElement("text", "About myself paragraph");
+        logElement("section", "Education background");
+        logElement("section", "Technical skills");
+        logElement("link", "CV PDF");
+      };
+
+      function logElement(type, description) {
+        console.log(new Date() + " - Viewed " + type + ": " + description);
+      }
     </script>
   </body>
 </html>

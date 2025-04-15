@@ -19,22 +19,22 @@
         transform: translateY(20px);
         transition: opacity 0.8s ease, transform 0.8s ease;
       }
-      
+
       body.loaded {
         opacity: 1;
         transform: translateY(0);
       }
-      
+
       body.fade-out {
         opacity: 0 !important;
         transform: translateY(-20px) !important;
       }
-      
+
       h1 {
         text-align: center;
         margin-top: 20px;
       }
-      
+
       .navigation {
         display: flex;
         justify-content: space-between;
@@ -43,7 +43,7 @@
         width: 100%;
         box-sizing: border-box;
       }
-      
+
       .home-button {
         background-color: rgb(0, 255, 0);
         color: rgb(0, 0, 0);
@@ -59,7 +59,7 @@
         border: 2px solid transparent;
         margin: 10px 0;
       }
-      
+
       .home-button:hover {
         background-color: #000000;
         color: #00ff00;
@@ -91,7 +91,7 @@
         border: 2px solid #00ff00;
         box-shadow: 0 0 20px rgba(0, 255, 0, 0.6);
       }
-      
+
       .logo {
         font-size: 28px;
         font-weight: bold;
@@ -99,7 +99,7 @@
         text-shadow: 0 0 10px rgba(0, 255, 0, 0.7);
         letter-spacing: 2px;
       }
-      
+
       .Head {
         font-size: 2.5em;
         color: #00ff00;
@@ -115,17 +115,17 @@
         margin-left: auto;
         margin-right: auto;
       }
-      
+
       .Head:hover {
         animation: glow 1.5s infinite alternate;
         transform: scale(1.25);
         transition: transform 0.3s ease;
       }
-      
+
       .category-section {
         margin-bottom: 40px;
       }
-      
+
       .category-heading {
         font-size: 1.6em;
         color: #00ff00;
@@ -138,23 +138,19 @@
         margin-left: auto;
         margin-right: auto;
       }
-      
-      /* Make the UL a flex container so items go side by side */
       ul {
         list-style-type: none;
-        display: flex; /* key for side-by-side layout */
-        flex-wrap: wrap; /* allow wrapping if the window is narrow */
+        display: flex; 
+        flex-wrap: wrap; 
         justify-content: center;
         padding: 0;
         margin: 0 auto;
-        max-width: 800px; /* optional: limit how wide the row of skills gets */
+        max-width: 800px; 
       }
-      
+
       ul li {
         margin: 10px;
       }
-      
-      /* The skill icons */
       .tools img,
       .tool img {
         width: 50px;
@@ -164,33 +160,31 @@
         background-color: #ffffff;
         border-radius: 50%;
       }
-      
+
       .tools img:hover,
       .tool img:hover {
         transform: scale(1.25);
       }
-      
-      /* The container for each skill icon and name */
       .tools,
       .tool {
         display: inline-block;
         text-align: center;
       }
-      
+
       .toolname {
         display: block;
         margin-top: 5px;
         font-size: 0.9em;
         color: #00ff00;
       }
-      
+
       .skill-description {
         text-align: center;
         font-size: 1.1em;
         margin-bottom: 20px;
         color: #88ff88;
       }
-      
+
       @keyframes glow {
         from {
           box-shadow: 0 0 10px #00ff00, 0 0 20px #00ff00;
@@ -198,6 +192,42 @@
         to {
           box-shadow: 0 0 15px #00ff00, 0 0 30px #00ff00, 0 0 45px #00ff00;
         }
+      }
+      #text {
+        font-family: Arial, sans-serif;
+        font-size: 16px;
+        width: 80%;
+        height: 200px;
+        margin-left: auto;
+        margin-right: auto;
+        margin-bottom: 50px;
+        display: block;
+        padding: 10px;
+        font-size: 16px;
+        border-radius: 10px;
+        border: 2px solid #00ff00;
+        background-color: #000000;
+        color: #00ff00;
+        box-shadow: 0 0 10px #00ff00, 0 0 20px #00ff00, 0 0 30px #00ff00;
+      }
+      .text-analyzer {
+        text-align: center;
+        margin-top: 20px;
+        color: #00ff00;
+      }
+      #analyzeButton {
+        background-color: #00ff00;
+        color: #000000;
+        font-size: 16px;
+        font-weight: bold;
+        text-decoration: none;
+        display: inline-block;
+        padding: 12px 24px;
+        border-radius: 30px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        box-shadow: 0 4px 15px rgba(0, 255, 0, 0.667);
+        border: 2px solid transparent;
       }
     </style>
   </head>
@@ -221,7 +251,6 @@
     <header>
       <h1 class="Head">Technical Skills</h1>
 
-      <!-- Very Good Category -->
       <div class="category-section">
         <h2 class="category-heading">Very Good</h2>
         <p class="skill-description">
@@ -250,8 +279,6 @@
           </li>
         </ul>
       </div>
-
-      <!-- Good Category -->
       <div class="category-section">
         <h2 class="category-heading">Good</h2>
         <p class="skill-description">
@@ -290,8 +317,6 @@
           </li>
         </ul>
       </div>
-
-      <!-- Intermediate Category -->
       <div class="category-section">
         <h2 class="category-heading">Intermediate</h2>
         <p class="skill-description">
@@ -350,8 +375,6 @@
           </li>
         </ul>
       </div>
-
-      <!-- Beginner Category -->
       <div class="category-section">
         <h2 class="category-heading">Beginner</h2>
         <p class="skill-description">
@@ -424,36 +447,25 @@
           </li>
         </ul>
       </div>
+      <h1><strong>TEXT ANALYZER</strong></h1>
+      <textarea id="text" placeholder="Enter your text here..."></textarea>
     </header>
     <script>
-      // Function to handle smooth page transitions
       function navigateSmoothly(url) {
-        // Prevent multiple transitions
         if (document.body.classList.contains("fade-out")) {
           return;
         }
-
-        // Store destination URL in sessionStorage
         sessionStorage.setItem("destinationPage", url);
-
-        // Apply fade-out class to body for smooth exit
         document.body.classList.add("fade-out");
-
-        // Wait for animation to complete before navigating
         setTimeout(function () {
           window.location.href = url;
-        }, 800); // Slightly shorter than CSS transition to ensure it completes
+        }, 800);
       }
-
-      // When DOM is fully loaded
       document.addEventListener("DOMContentLoaded", function () {
-        // Small delay before showing the page
         setTimeout(function () {
           document.body.classList.add("loaded");
         }, 100);
       });
-
-      // Apply immediately if DOM already loaded (for page refreshes)
       if (
         document.readyState === "complete" ||
         document.readyState === "interactive"
@@ -461,6 +473,259 @@
         setTimeout(function () {
           document.body.classList.add("loaded");
         }, 100);
+      }
+      window.onload = function () {
+        console.log(new Date() + " - Page viewed");
+        document.onclick = function (event) {
+          var clicked = event.target;
+          var type = "element";
+          if (clicked.tagName == "IMG") type = "image";
+          if (clicked.tagName == "A") type = "link";
+          if (clicked.tagName == "P") type = "text";
+          if (clicked.tagName == "SELECT") type = "drop-down";
+          console.log(new Date() + " - Clicked " + type);
+        };
+        logElement("image", "Profile picture");
+        logElement("text", "About myself paragraph");
+        logElement("section", "Education background");
+        logElement("section", "Technical skills");
+        logElement("link", "CV PDF");
+      };
+      function logElement(type, description) {
+        console.log(new Date() + " - Viewed " + type + ": " + description);
+      }
+      const PRONOUNS = [
+        "i",
+        "me",
+        "my",
+        "mine",
+        "myself",
+        "we",
+        "us",
+        "our",
+        "ours",
+        "ourselves",
+        "you",
+        "your",
+        "yours",
+        "yourself",
+        "yourselves",
+        "he",
+        "him",
+        "his",
+        "himself",
+        "she",
+        "her",
+        "hers",
+        "herself",
+        "it",
+        "its",
+        "itself",
+        "they",
+        "them",
+        "their",
+        "theirs",
+        "themselves",
+        "this",
+        "that",
+        "these",
+        "those",
+        "who",
+        "whom",
+        "whose",
+        "which",
+        "what",
+      ];
+
+      const PREPOSITIONS = [
+        "about",
+        "above",
+        "across",
+        "after",
+        "against",
+        "along",
+        "amid",
+        "among",
+        "around",
+        "at",
+        "before",
+        "behind",
+        "below",
+        "beneath",
+        "beside",
+        "between",
+        "beyond",
+        "by",
+        "concerning",
+        "despite",
+        "down",
+        "during",
+        "except",
+        "for",
+        "from",
+        "in",
+        "inside",
+        "into",
+        "like",
+        "near",
+        "of",
+        "off",
+        "on",
+        "onto",
+        "out",
+        "outside",
+        "over",
+        "past",
+        "regarding",
+        "round",
+        "since",
+        "through",
+        "throughout",
+        "to",
+        "toward",
+        "towards",
+        "under",
+        "underneath",
+        "until",
+        "unto",
+        "up",
+        "upon",
+        "with",
+        "within",
+        "without",
+      ];
+
+      const INDEFINITE_ARTICLES = ["a", "an", "some", "any", "many"];
+      document.addEventListener("DOMContentLoaded", function () {
+        createForm();
+        document
+          .getElementById("analyzeButton")
+          .addEventListener("click", analyzeText);
+      });
+      function createForm() {
+        const formHTML = `
+        <div class="text-analyzer" style="max-width: 800px; margin: 0 auto; font-family: Arial, sans-serif;">
+  
+            <button id="analyzeButton" style="padding: 10px 20px; background-color: #4CAF50; color: white; border: none; border-radius: 4px; cursor: pointer;">
+                Analyze Text
+            </button>
+            
+            <div id="results" style="margin-top: 30px;">
+                <h3>Results</h3>
+                <div id="basicCounts" style="margin-bottom: 20px;"></div>
+                
+                <div id="pronounCounts" style="margin-bottom: 20px;">
+                    <h4>Pronoun Counts</h4>
+                    <div id="pronounResults"></div>
+                </div>
+                
+                <div id="prepositionCounts" style="margin-bottom: 20px;">
+                    <h4>Preposition Counts</h4>
+                    <div id="prepositionResults"></div>
+                </div>
+                
+                <div id="articleCounts">
+                    <h4>Indefinite Article Counts</h4>
+                    <div id="articleResults"></div>
+                </div>
+            </div>
+        </div>
+    `;
+        const container = document.createElement("div");
+        container.innerHTML = formHTML;
+        document.body.appendChild(container);
+      }
+      function analyzeText() {
+        const text = document.getElementById("text").value;
+
+        if (!text.trim()) {
+          alert("Please enter text to analyze.");
+          return;
+        }
+        const basicCounts = calculateBasicCounts(text);
+        displayBasicCounts(basicCounts);
+        const tokens = tokenizeText(text);
+        const lowerCaseTokens = tokens.map((token) => token.toLowerCase());
+        const pronounCounts = countWordsByCategory(lowerCaseTokens, PRONOUNS);
+        const prepositionCounts = countWordsByCategory(
+          lowerCaseTokens,
+          PREPOSITIONS
+        );
+        const articleCounts = countWordsByCategory(
+          lowerCaseTokens,
+          INDEFINITE_ARTICLES
+        );
+        displayWordCounts(pronounCounts, "pronounResults");
+        displayWordCounts(prepositionCounts, "prepositionResults");
+        displayWordCounts(articleCounts, "articleResults");
+      }
+      function calculateBasicCounts(text) {
+        return {
+          letters: (text.match(/[a-zA-Z]/g) || []).length,
+          words: text.trim().split(/\s+/).length,
+          spaces: (text.match(/\s/g) || []).length,
+          newlines: (text.match(/\n/g) || []).length,
+          specialSymbols: (text.match(/[^\w\s]/g) || []).length,
+        };
+      }
+      function displayBasicCounts(counts) {
+        const resultsHTML = `
+        <p><strong>Letters:</strong> ${counts.letters}</p>
+        <p><strong>Words:</strong> ${counts.words}</p>
+        <p><strong>Spaces:</strong> ${counts.spaces}</p>
+        <p><strong>Newlines:</strong> ${counts.newlines}</p>
+        <p><strong>Special Symbols:</strong> ${counts.specialSymbols}</p>
+    `;
+
+        document.getElementById("basicCounts").innerHTML = resultsHTML;
+      }
+      function tokenizeText(text) {
+        return text
+          .split(/\s+/)
+          .map((word) => word.replace(/[^\w\s']|_/g, ""))
+          .filter((word) => word);
+      }
+      function countWordsByCategory(tokens, categoryWords) {
+        const counts = {};
+        categoryWords.forEach((word) => {
+          counts[word] = 0;
+        });
+        tokens.forEach((token) => {
+          if (categoryWords.includes(token)) {
+            counts[token]++;
+          }
+        });
+
+        return counts;
+      }
+      function displayWordCounts(counts, containerId) {
+        const resultsContainer = document.getElementById(containerId);
+        resultsContainer.innerHTML = "";
+        const table = document.createElement("table");
+        table.style.width = "100%";
+        table.style.borderCollapse = "collapse";
+        table.innerHTML = `
+        <tr style="background-color: #f2f2f2;">
+            <th style="padding: 8px; text-align: left; border: 1px solid #ddd;">Word</th>
+            <th style="padding: 8px; text-align: left; border: 1px solid #ddd;">Count</th>
+        </tr>
+    `;
+        Object.entries(counts)
+          .filter(([_, count]) => count > 0)
+          .sort((a, b) => b[1] - a[1])
+          .forEach(([word, count]) => {
+            const row = document.createElement("tr");
+            row.innerHTML = `
+                <td style="padding: 8px; border: 1px solid #ddd;">${word}</td>
+                <td style="padding: 8px; border: 1px solid #ddd;">${count}</td>
+            `;
+            table.appendChild(row);
+          });
+
+        resultsContainer.appendChild(table);
+        if (!Object.values(counts).some((count) => count > 0)) {
+          resultsContainer.innerHTML = "<p>No matches found.</p>";
+        }
       }
     </script>
   </body>

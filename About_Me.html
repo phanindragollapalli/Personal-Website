@@ -27,20 +27,17 @@
         padding: 0;
         color: var(--text-color);
         line-height: 1.6;
-        /* Initial state for page load animation */
         opacity: 0;
         transform: translateY(20px);
         transition: opacity var(--transition-duration) ease,
-                    transform var(--transition-duration) ease;
+          transform var(--transition-duration) ease;
       }
 
-      /* Class applied after DOM load to trigger animation */
       body.loaded {
         opacity: 1;
         transform: translateY(0);
       }
 
-      /* Class applied before navigation to trigger fade-out */
       body.fade-out {
         opacity: 0 !important;
         transform: translateY(-30px) !important;
@@ -214,27 +211,27 @@
         box-shadow: 0 0 20px rgba(0, 255, 0, 0.6);
       }
       .back-button {
-            background-color: rgb(0, 255, 0);
-            color: rgb(0, 0, 0);
-            font-size: 16px;
-            font-weight: bold;
-            text-decoration: none;
-            display: inline-block;
-            padding: 12px 24px;
-            border-radius: 30px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            box-shadow: 0 4px 15px rgba(0, 255, 0, 0.4);
-            border: 2px solid transparent;
-        }
+        background-color: rgb(0, 255, 0);
+        color: rgb(0, 0, 0);
+        font-size: 16px;
+        font-weight: bold;
+        text-decoration: none;
+        display: inline-block;
+        padding: 12px 24px;
+        border-radius: 30px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        box-shadow: 0 4px 15px rgba(0, 255, 0, 0.4);
+        border: 2px solid transparent;
+      }
 
-        .back-button:hover {
-            background-color: #000000;
-            color: #00ff00;
-            transform: scale(1.05);
-            border: 2px solid #00ff00;
-            box-shadow: 0 0 20px rgba(0, 255, 0, 0.6);
-        }
+      .back-button:hover {
+        background-color: #000000;
+        color: #00ff00;
+        transform: scale(1.05);
+        border: 2px solid #00ff00;
+        box-shadow: 0 0 20px rgba(0, 255, 0, 0.6);
+      }
     </style>
   </head>
   <body>
@@ -244,17 +241,21 @@
     </header>
 
     <div class="navigation">
-        <div class="logo"></div>
-        <a
-          href="#"
-          class="home-button"
-          onclick="navigateSmoothly('index.html'); return false;"
-        >
-          <i class="fas fa-home"></i> Home
-        </a>
-      <a href="#" class="back-button" onclick="navigateSmoothly('Details.html'); return false;">
+      <div class="logo"></div>
+      <a
+        href="#"
+        class="home-button"
+        onclick="navigateSmoothly('index.html'); return false;"
+      >
+        <i class="fas fa-home"></i> Home
+      </a>
+      <a
+        href="#"
+        class="back-button"
+        onclick="navigateSmoothly('Details.html'); return false;"
+      >
         <i class="fas fa-arrow-left"></i> Go Back
-    </a>
+      </a>
     </div>
 
     <div class="container">
@@ -262,8 +263,8 @@
         <div class="content-section">
           <h2>My Introduction</h2>
           <p>
-            My name is G.phanindra and my Birth place is Eluru but I live in kakinada, Andhra Pradesh, 
-            India.
+            My name is G.phanindra and my Birth place is Eluru but I live in
+            kakinada, Andhra Pradesh, India.
             <br />
             I am currently pursuing my B.Tech in Computer Science and
             Engineering at International Institute of Information Technology,
@@ -381,45 +382,36 @@
 
     <footer>&copy; 2025 G.phanindra | All Rights Reserved</footer>
     <script>
-      // Function to handle smooth page transitions
       function navigateSmoothly(url) {
-        // Store that we're transitioning in sessionStorage
         sessionStorage.setItem("isPageTransitioning", "true");
 
-        // Apply fade-out class
         document.body.classList.add("fade-out");
 
-        // Wait for animation to complete before navigating
         setTimeout(function () {
           window.location.href = url;
-        }, 1000); // Match your transition duration
+        }, 1000);
       }
 
-      // Wait for DOM content to load before starting animations
       document.addEventListener("DOMContentLoaded", function () {
         try {
-          // Check if we're coming from another page
           const isTransitioning =
             sessionStorage.getItem("isPageTransitioning") === "true";
 
           if (isTransitioning) {
-            // Clear the transitioning flag
             sessionStorage.removeItem("isPageTransitioning");
           }
 
-          // Small delay to ensure animations trigger properly
           setTimeout(function () {
             document.body.classList.add("loaded");
           }, 100);
         } catch (e) {
           console.error("Error in page transition:", e);
-          // Fallback - make sure page is visible
+
           document.body.style.opacity = 1;
           document.body.style.transform = "translateY(0)";
         }
       });
 
-      // Fallback in case DOMContentLoaded never fires
       setTimeout(function () {
         if (!document.body.classList.contains("loaded")) {
           document.body.style.opacity = 1;
@@ -427,6 +419,32 @@
           console.warn("Fallback page visibility activated");
         }
       }, 2000);
-      </script> 
+      window.onload = function () {
+        console.log(new Date() + " - Page viewed");
+
+        document.onclick = function (event) {
+          var clicked = event.target;
+
+          var type = "element";
+
+          if (clicked.tagName == "IMG") type = "image";
+          if (clicked.tagName == "A") type = "link";
+          if (clicked.tagName == "P") type = "text";
+          if (clicked.tagName == "SELECT") type = "drop-down";
+
+          console.log(new Date() + " - Clicked " + type);
+        };
+
+        logElement("image", "Profile picture");
+        logElement("text", "About myself paragraph");
+        logElement("section", "Education background");
+        logElement("section", "Technical skills");
+        logElement("link", "CV PDF");
+      };
+
+      function logElement(type, description) {
+        console.log(new Date() + " - Viewed " + type + ": " + description);
+      }
+    </script>
   </body>
 </html>

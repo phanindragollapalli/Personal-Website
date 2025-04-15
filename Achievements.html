@@ -252,43 +252,33 @@
         <li>
           <i class="fas fa-certificate"></i> JEE Advanced (2024): AIR 1795
         </li>
-        <br>
+        <br />
         <li>
-          <i class="fas fa-certificate"></i> CodeForces (Max-rating) : 947 
+          <i class="fas fa-certificate"></i> CodeForces (Max-rating) : 947
         </li>
       </ul>
-
-
     </div>
     <script>
-      // Function to handle smooth page transitions
       function navigateSmoothly(url) {
-        // Prevent multiple transitions
         if (document.body.classList.contains("fade-out")) {
           return;
         }
 
-        // Store destination URL in sessionStorage
         sessionStorage.setItem("destinationPage", url);
 
-        // Apply fade-out class to body for smooth exit
         document.body.classList.add("fade-out");
 
-        // Wait for animation to complete before navigating
         setTimeout(function () {
           window.location.href = url;
-        }, 800); // Slightly shorter than CSS transition to ensure it completes
+        }, 800);
       }
 
-      // When DOM is fully loaded
       document.addEventListener("DOMContentLoaded", function () {
-        // Small delay before showing the page
         setTimeout(function () {
           document.body.classList.add("loaded");
         }, 100);
       });
 
-      // Apply immediately if DOM already loaded (for page refreshes)
       if (
         document.readyState === "complete" ||
         document.readyState === "interactive"
@@ -296,6 +286,33 @@
         setTimeout(function () {
           document.body.classList.add("loaded");
         }, 100);
+      }
+
+      window.onload = function () {
+        console.log(new Date() + " - Page viewed");
+
+        document.onclick = function (event) {
+          var clicked = event.target;
+
+          var type = "element";
+
+          if (clicked.tagName == "IMG") type = "image";
+          if (clicked.tagName == "A") type = "link";
+          if (clicked.tagName == "P") type = "text";
+          if (clicked.tagName == "SELECT") type = "drop-down";
+
+          console.log(new Date() + " - Clicked " + type);
+        };
+
+        logElement("image", "Profile picture");
+        logElement("text", "About myself paragraph");
+        logElement("section", "Education background");
+        logElement("section", "Technical skills");
+        logElement("link", "CV PDF");
+      };
+
+      function logElement(type, description) {
+        console.log(new Date() + " - Viewed " + type + ": " + description);
       }
     </script>
   </body>
